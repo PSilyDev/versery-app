@@ -1,0 +1,286 @@
+:root {
+    --color-gray: #656565;
+}
+
+/* --- Main Search Container --- */
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.search-modal {
+    /* --- UI CLEANUP: Changed to a light, clean theme --- */
+    display: flex;
+    /* justify-content: start; */
+    flex-direction: column;
+    /* align-items: center; */
+    width: 65%;
+    background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent white */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 12px; /* Softer corners */
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+}
+
+/* --- Search Bar Input Area --- */
+.search-bar {
+    left: 2.5%;
+    /* right: 5%; */
+    /* background-color: blue; */
+    position: relative;
+    width: 95%;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0.75em 1em; /* Slightly adjusted padding */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.search-icon {
+    /* padding: 10px; */
+    /* margin: 20px; */
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    color: var(--color-gray);
+    margin-right: 1em; /* Add some space between icon and input */
+    margin-left: 1.5em;
+}
+
+.input {
+    width: 90%;
+    /* background-color: green; */
+    /* flex-grow: 1; --- THIS IS THE KEY --- Allows the input to take up all available space */
+    /* flex-grow: 1; */
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+#search-input {
+    width: 100%; /* Input should fill its parent container */
+    background: none;
+    outline: none;
+    border: none;
+    color: #000; /* --- UI CLEANUP: Changed text color to black --- */
+    font-family: "Neue Montreal", sans-serif; /* Match landing page font */
+    font-size: 16px;
+    padding: 0.95em 0.75em; /* Adjust padding as needed */
+}
+
+#search-input::placeholder {
+    color: var(--color-gray);
+}
+
+.clear-icon {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: #888;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: sans-serif;
+}
+
+.action-icons {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    padding-left: 1em; /* Add space between input and icons */
+}
+
+.action-icons i, .action-icons span {
+    color: var(--color-gray);
+}
+
+/* --- Dropdown Content --- */
+.dropdown {
+    /* The dropdown-visible class will still control visibility */
+}
+
+.dropdown-visible {
+    padding: 0.5em 0;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    border-radius: 0 0 12px 12px;
+}
+
+.tags-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+    padding-top: 1em;
+    padding-bottom: 0.5em;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+}
+
+.tags-container span {
+    
+    margin: 1em 1em;
+    align-self: self-start;
+    color: var(--color-gray);
+    font-size: 14.5px;
+    font-family: "Neue Montreal", sans-serif;
+}
+
+.tags {
+    /* background-color: green; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    /* padding-left: 1em; */
+    /* justify-content: space-between; */
+    
+    gap: 0.5em 0.75em;
+    /* padding: 1em 1em 1em 1em; */
+}
+
+
+.tag {
+    /* background-color: red; */
+
+    display: flex;
+    align-items: center;
+    padding: 0em 0.1em !important;
+    
+    /* background: rgba(240, 240, 240, 0.9); */
+    border-radius: 999px;
+    font-size: 12px;
+    font-family: "Neue Montreal", sans-serif;
+    color: #333;
+    gap: 0.5em;
+    max-width: 100%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: background 0.2s ease;
+}
+
+
+.tag:hover {
+    background: rgba(0, 0, 0, 0.07);
+}
+
+.tag.active {
+    background-color: #000;
+    /* color: white; */
+    /* color: red; */
+}
+
+.tag.active i, .tag.active .remove-filter-icon {
+    color: white;
+}
+
+.tag p {
+    padding-left: 0.4em;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+.tag i {
+    font-size: 18px;
+    color: var(--color-gray);
+    margin-right: 4px;
+}
+
+.remove-filter-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e0e0e0;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #666;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.remove-filter-icon:hover {
+    background: #d0d0d0;
+}
+
+
+/* --- Suggestion Items --- */
+.search-items-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    font-family: "Neue Montreal", sans-serif;
+}
+
+.search-items-container p {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1em;
+    font-size: 13.5px;
+    margin-top: 0;
+    color: var(--color-gray);
+}
+
+.search-items-container p span {
+    color: #000;
+}
+
+#search-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#search-items li {
+    padding: 0.75em 1.25em;
+    border-radius: 8px;
+    transition: background 0.2s ease;
+}
+
+#search-items li:hover {
+    background-color: rgba(0, 0, 0, 0.04);
+}
+
+.author-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+#search-items li a {
+    text-decoration: none;
+    font-size: 15px;
+    color: #000;
+}
+
+#search-items li a span {
+    color: var(--color-gray);
+    padding-left: 0.5em;
+}
+
+.dropdown-visible {
+    animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Add this to the bottom of your SearchNew.css file */
+

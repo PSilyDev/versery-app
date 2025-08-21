@@ -1,0 +1,215 @@
+.search_box {
+    /* background-color: green; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 86%; /* or any specific width you'd like */
+    margin: 0px auto; /* Add top/bottom margin */
+    max-width: 100%; /* Ensure the width doesn't exceed the parent's size */
+    padding: 0; /* Remove padding if width is set, let inner elements handle padding */
+}
+
+.scroll_buttons {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    /* Optional: Add min-height to prevent collapse if buttons disappear */
+    min-height: 50px; /* Adjust based on button height + padding */
+}
+
+.suggestion_container {
+    display: flex;
+    overflow-x: hidden;
+    white-space: nowrap;
+    padding: 10px 5px;
+    gap: 15px;
+    scroll-behavior: smooth;
+    position: relative;
+    flex-grow: 1;
+    min-width: 0; /* Add this for flexbox safety */
+
+    /* Hide scrollbar styles */
+    &::-webkit-scrollbar { display: none; }
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.suggestion_pill {
+    position: relative;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #1e1e1e;
+    border-radius: 8px;
+    z-index: 0;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent pills from shrinking */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Add hover transition */
+}
+
+.suggestion_pill:hover:not(.selected):not(:disabled) {
+    background-color: #333; /* Darken on hover */
+    transform: translateY(-1px); /* Slight lift on hover */
+    color: white;
+}
+
+.suggestion_pill:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* Keep the selected styles */
+.suggestion_pill.selected::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    z-index: -1;
+    background: linear-gradient(
+        270deg,
+        #E69E66,
+        #E5B794,
+        #E4D2C4,
+        #E5B794,
+        #E5B794,
+        #E69E66
+    );
+    background-size: 1000% 1000%;
+    animation: borderGradient 20s ease infinite;
+    border-radius: 10px;
+    padding: 4px; /* This doesn't actually do anything visually with mask */
+    mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask: /* Need prefix for wider compatibility */
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask-composite: destination-out; /* Use destination-out for Chrome/Safari */
+}
+
+
+.chevron {
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+    padding: 9px 12px;
+    font-weight: 400;
+    color: #1e1e1e;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.35);
+    flex-shrink: 0;
+    transition: background-color 0.2s ease;
+    line-height: 1;
+    /* Define margins explicitly */
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.chevron:hover {
+    background-color: #333;
+    color: white;
+}
+
+.chevron-left {
+    /* Applied only when rendered */
+    margin-right: 10px;
+}
+
+.chevron-right {
+     /* Applied only when rendered */
+    margin-left: 10px;
+}
+
+
+.centered-pills .suggestion_container {
+    justify-content: center;
+}
+
+
+
+@keyframes borderGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Optional: Loading Indicator Style */
+.loading-indicator {
+    margin-top: 15px;
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    .search_box {
+        width: 95%; /* Maybe increase width on smaller screens */
+    }
+    .suggestion_pill {
+        font-size: 14px; /* Slightly larger than before */
+        padding: 8px 14px;
+    }
+    .chevron {
+       padding: 8px 10px; /* Slightly smaller padding */
+       font-size: 20px;
+    }
+    .suggestion_container {
+        gap: 10px; /* Smaller gap */
+    }
+    .chevron-left {
+        margin-right: 5px;
+    }
+    .chevron-right {
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+     .suggestion_pill {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+     .suggestion_container {
+        gap: 8px;
+    }
+}
+
+/* Add this to your SearchBox.css file */
+
+/* Style for the animated container */
+.search_box.animated .suggestion_container {
+    /* This tells the container to use the 'marquee' animation */
+    animation: marquee 30s linear infinite;
+    /* When a user hovers over the container, the animation will pause */
+    animation-play-state: running;
+  }
+  
+  .search_box.animated .suggestion_container:hover,
+.search_box.animated .suggestion_container.paused {
+  animation-play-state: paused;
+}
+  
+  /* Define the animation keyframes */
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      /* We move the container by -50%. Since the content is duplicated (200% width),
+         moving it by half its width brings the second set of items perfectly
+         to the start, creating a seamless loop. */
+      transform: translateX(-50%);
+    }
+  }
+  
+  /* We also need to tell the parent container not to hide the overflow */
+  .search_box.animated {
+      overflow: hidden;
+  }

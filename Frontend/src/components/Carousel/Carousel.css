@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #71a1ff;
+}
+
+section {
+    position: relative;
+    width: calc(min(47rem, 90%));
+    margin: 0 auto;
+    min-height: 100vh;
+    column-gap: 3rem;
+    padding-block: min(20vh, 3rem);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.swiper-container {
+    position: relative;
+}
+
+.swiper {
+    width: 100%;
+    padding: 60px 0 95px 0;
+}
+
+/* Replace your existing .swiper-slide rule with this */
+/* In Carousel.css, replace the old .swiper-slide rule */
+.swiper-slide {
+    /* Give the slide a width that is appropriate for your Card component */
+    /* Adjust this value if your cards are wider or narrower */
+    width: 420px; 
+    height: auto; /* Allow height to be determined by the card's content */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+/* Also, add this new rule for the main container */
+.swiper-carousel-container {
+    width: 100%;
+    position: relative;
+}
+
+.swiper-slide .slide-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -45%);
+    width: 100%;
+}
+
+.swiper-slide .slide-content img{width: 100%; border-radius: 10px;}
+.swiper-button-prev {
+    background: white;
+    border-radius: 50%;
+    top: 47%;
+    left: -30px;
+    width: 50px;
+    height: 50px;
+    /* box-shadow: 0px 2px 11px regba(0, 0, 0, 0.17); */
+}
+
+.swiper-button-prev::after{content: "";}
+.swiper-button-prev .bx{font-size: 25px;}
+.swiper-button-next {
+    background: white;
+    border-radius: 50%;
+    top: 47%;
+    right: -30px;
+    width: 50px;
+    height: 50px;
+    box-shadow: 0px 2px 11px regba(0, 0, 0, 0.17);
+}
+
+.swiper-button-next::after{content: "";}
+.swiper-button-next .bx{font-size: 25px;}
+@media (min-width: 760px){
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: flex;
+    }
+}

@@ -1,0 +1,103 @@
+.dropdown-panel {
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 70%;
+  height: 110px; /* adjust as per your header height */
+  background: rgba(255, 255, 255, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 200px;
+  z-index: 50;
+  animation: dropdownSlide 0.3s ease-in-out;
+  border-radius: 0px 0px 20px 20px;
+}
+
+@keyframes dropdownSlide {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.dropdown-panel button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-panel button:hover {
+  color: #ffcccc;
+}
+
+
+.action-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;   /* reduced gap to control spacing */
+  width: 100%;
+}
+
+
+.action-pill {
+  position: relative;
+    padding: 10px 18px;
+    font-size: 16px;
+    font-weight: 400;
+    color: #1e1e1e;
+    border-radius: 8px;
+    z-index: 0;
+    background: rgba(255, 255, 255, 0.35);
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0; /* Prevent pills from shrinking */
+    transition: background-color 0.2s ease, transform 0.2s ease; /* Add hover transition */
+}
+
+.action-pill:hover:not(:disabled) {
+  background-color: #333;
+  transform: translateY(-1px);
+  color: white;
+}
+
+.action-pill:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Optional gradient border when active/selected */
+.action-pill.selected::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  z-index: -1;
+  background: linear-gradient(
+      270deg,
+      #E69E66,
+      #E5B794,
+      #E4D2C4,
+      #E5B794,
+      #E5B794,
+      #E69E66
+  );
+  background-size: 1000% 1000%;
+  animation: borderGradient 20s ease infinite;
+  border-radius: 10px;
+  mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+  -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+}

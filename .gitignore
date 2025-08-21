@@ -1,0 +1,30 @@
+# Environment variables - VERY IMPORTANT
+.env
+
+# Firebase credentials - VERY IMPORTANT
+firebase-service-account.json
+
+# Python virtual environments
+/Backend/venv
+/Frontend/venv
+/venv
+
+# Node.js dependencies
+/Frontend/node_modules
+
+# Python cache files
+__pycache__/
+*.pyc
+
+# AI models and large data files (optional but recommended)
+*.faiss
+poem_id_map.json
+poems.json
+
+# IDE and OS specific files
+.vscode/
+.idea/
+.DS_Store
+
+*.zip
+all-files.txt
