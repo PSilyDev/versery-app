@@ -9,15 +9,20 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token") # We don't use tokenUrl, 
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
+        # If the token starts with "Bearer ", strip it
+        if token.startswith("Bearer "):
+            token = token.split(" ", 1)[1]
+
         decoded_token = auth.verify_id_token(token)
         uid = decoded_token['uid']
         return {"uid": uid}
-    except auth.InvalidIdTokenError:
+    except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid authentication credentials",
+            detail=f"Invalid authentication credentials: {str(e)}",
             headers={"WWW-Authenticate": "Bearer"},
         )
+
 
 router = APIRouter()
 

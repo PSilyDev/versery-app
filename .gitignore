@@ -1,5 +1,7 @@
 # Environment variables - VERY IMPORTANT
 .env
+/Frontend/.env
+/Backend/.env
 
 # Firebase credentials - VERY IMPORTANT
 firebase-service-account.json
@@ -11,12 +13,17 @@ firebase-service-account.json
 
 # Node.js dependencies
 /Frontend/node_modules
+/Backend/node_modules
+
+# Frontend build outputs
+/Frontend/dist
 
 # Python cache files
 __pycache__/
+/Backend/__pycache__/
 *.pyc
 
-# AI models and large data files (optional but recommended)
+# AI models and large data files
 *.faiss
 poem_id_map.json
 poems.json
@@ -26,5 +33,6 @@ poems.json
 .idea/
 .DS_Store
 
+# Misc
 *.zip
 all-files.txt

@@ -345,7 +345,7 @@ const AppStyles = () => (
     bottom: auto;
     width: 100%;
     text-align: center;
-    padding-bottom: 10px;
+    margin-bottom: 18px;
     font-size: 14px;
   }
 
@@ -539,9 +539,9 @@ function App() {
                     </div>
                 </div>
             </div>
-            <div className="made_with_love">
+        {/*<div className="made_with_love">
               Made with love <FontAwesomeIcon icon={faHeart} size="sm" style={{ color: "#ff0000", marginLeft: "5px", marginRight: "5px" }}/> by <em>Prakhar</em>, <em>Ritika</em> and <em>Neelabh.</em>
-            </div>
+            </div>*/}
           
           </>
         )}
