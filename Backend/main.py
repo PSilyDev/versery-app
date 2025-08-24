@@ -4,18 +4,26 @@ from routers import poems, users, search, autocomplete, unified_search
 from core.config import settings
 import firebase_admin
 from firebase_admin import credentials
+import os, json
 
-# Initialize Firebase Admin SDK
-cred = credentials.Certificate(settings.FIREBASE_SERVICE_ACCOUNT_KEY_PATH)
-firebase_admin.initialize_app(cred)
+# Load Firebase credentials from environment variable
+firebase_key = os.getenv("FIREBASE_SERVICE_ACCOUNT_KEY")
+
+if firebase_key:
+    cred = credentials.Certificate(json.loads(firebase_key))
+    firebase_admin.initialize_app(cred)
+else:
+    raise ValueError("FIREBASE_SERVICE_ACCOUNT_KEY environment variable not set")
 
 app = FastAPI(title="Poetry Postcards API")
 
 # This list should contain the URL of your frontend
 origins = [
     "http://localhost",
-    "http://localhost:3000", # The default for create-react-app
-    "http://localhost:5173", # The default for Vite
+    "http://localhost:3000",
+    "http://localhost:5173",
+    "https://poetry-postcards.web.app",
+    "https://poetry-postcards.firebaseapp.com",
 ]
 
 app.add_middleware(
@@ -33,6 +41,10 @@ app.include_router(search.router, tags=["Search"], prefix="/api")
 app.include_router(autocomplete.router, tags=["Autocomplete"], prefix="/api") # <-- Add this line
 app.include_router(unified_search.router, tags=["Unified Search"], prefix="/api")
 
+@app.get("/")
+def root():
+    return {"message": "Hello from FastAPI on Render"}
+    
 @app.get("/api")
 def read_root():
     return {"message": "Welcome to the Poetry Postcards API"}
