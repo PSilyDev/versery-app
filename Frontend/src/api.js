@@ -3,7 +3,7 @@ import axios from 'axios';
 import { auth } from './firebase';
 
 const apiClient = axios.create({
-  baseURL: 'http://127.0.0.1:8000/api', // Your FastAPI backend URL
+  baseURL: 'https://psilydev-versery.hf.space/api',
 });
 
 // Interceptor to add the auth token to every request
